@@ -21,8 +21,9 @@ def lightshot(data, buf, args):
     list_of_files = glob.glob('{}*'.format(lightshot_path)) # * means all if need specific format then *.csv
     latest_file = max(list_of_files, key=os.path.getctime)
 
-    weechat.buffer_set(buf, "input", "{} {}".format('/slack upload',latest_file))
-    weechat.buffer_set(buf, "input_pos", str(len(lightshot_path)))
+    command = "{} {}".format('/slack upload',latest_file)
+    weechat.buffer_set(buf, "input", command)
+    weechat.buffer_set(buf, "input_pos", str(len(command)))
 
     return weechat.WEECHAT_RC_OK
 
